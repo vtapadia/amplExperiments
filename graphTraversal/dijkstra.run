@@ -1,0 +1,37 @@
+solve;
+
+param d {NODES} default Infinity;  # Minimum distance store
+param pred {NODES} default 0;      # Predecessor for shortest path
+
+set TEMP default NODES; # Temporary nodes storage
+
+set MINIMUM_NODES ordered default {};
+param CURRENT default START_NODE;
+ 
+let d[START_NODE] := 0;
+repeat while card(TEMP) <> 0 {
+	let MINIMUM_NODES := {n in TEMP: d[n] == min {i in TEMP} d[i]};
+	let CURRENT := member(1, MINIMUM_NODES);
+	let TEMP := TEMP diff {CURRENT};
+	for {(i,j) in ARCS} {
+		if i == CURRENT and d[j] > d[i] + DIST[i,j] then {
+			let d[j] := d[i] + DIST[i,j];
+			let pred[j] := i;
+		}
+	}
+};
+
+var PREVIOUS;
+let PREVIOUS := END_NODE;
+printf "Shortest distance from %d to %d is %d.\n", START_NODE, END_NODE, d[END_NODE];
+printf "Path :: ";
+repeat while PREVIOUS <> 0 {
+	if PREVIOUS <> START_NODE then {
+		printf "%d,",PREVIOUS;
+	} else {
+		printf "%d",PREVIOUS;
+	}
+	let PREVIOUS := pred[PREVIOUS];
+}
+printf "\n";
+display {i in NODES}(d[i],pred[i]);
