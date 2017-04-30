@@ -1,0 +1,4 @@
+solve;
+display tar;
+display{i in I}(RELEASE_DATE[i], t[i], DURATION[i], DUE_DATE[i], s[i]);
+display{i in I, j in I}(y[i,j]);
