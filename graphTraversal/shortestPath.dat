@@ -1,0 +1,28 @@
+data;
+
+set NODES := A B C D E F G H I;
+
+param START_NODE := A ;
+param END_NODE := H ;
+
+param:  LINKS:  DIST :=
+A B 15
+A C 13
+A D 5
+B H 12
+C B 2
+C D 18
+C F 6
+D I 99
+D E 4
+E C 3
+E F 1
+E G 9
+E I 14
+F B 8
+F H 17
+G F 16
+G H 7
+G I 10
+I H 11
+;

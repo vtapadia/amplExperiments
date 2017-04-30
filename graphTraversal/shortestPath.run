@@ -1,0 +1,4 @@
+solve;
+display Total_Time;
+option omit_zero_rows 1;
+display Use;
